@@ -18,7 +18,7 @@
                         <img src="{{ gift.url }}" class="card-img-top" alt="image of {{ gift.name }}">
                         <div class="card-body">
                             <h2 class="text-secondary card-title">{{ gift.name }}</h2>
-                            <div class="badge badge-secondary">{{ gift.category.name }}</div>
+                            <div class="badge badge-secondary category">{{ gift.category.name ?? '' }}</div>
                         </div>
                     </div>
                 </div>

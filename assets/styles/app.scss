@@ -11,18 +11,30 @@ h1, h2 {
     --card-height:400px;
     --card-text-height:80px;
     height: var(--card-height);
+    position: relative;
 
     &:hover  {
         box-shadow: 1px 1px 1px $shadow;
     }
+
     .card-img-top {
         height: calc(var(--card-height) - var(--card-text-height));
         object-fit: cover;
         object-position: top;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
+
     .card-title {
         height: var(--card-text-height);
         font-family: $title-font;
         margin-bottom: $spacing;
+    }
+    .category {
+        position: absolute;
+        top: $spacing;
+        left: $spacing;
+        font-size: 12pt;
     }
 }
