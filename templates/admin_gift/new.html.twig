@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+
+{% block title %}Hello AdminGiftController!{% endblock %}
+
+{% block body %}
+    <main class="container-fluid">
+        <h1>Add a gift</h1>
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <button class="btn btn-primary">Add</button>
+        {{ form_end(form) }}
+    </main>
+{% endblock %}

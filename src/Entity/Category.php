@@ -27,7 +27,7 @@ class Category
     /**
      * @ORM\OneToMany(targetEntity=Gift::class, mappedBy="category")
      */
-    private ArrayCollection $gifts;
+    private Collection $gifts;
 
     public function __construct()
     {
