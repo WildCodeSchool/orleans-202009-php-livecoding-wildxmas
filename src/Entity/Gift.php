@@ -27,6 +27,11 @@ class Gift
      */
     private string $url;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="gifts")
+     */
+    private ?Category $category;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -52,6 +57,18 @@ class Gift
     public function setUrl(string $url): self
     {
         $this->url = $url;
+
+        return $this;
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): self
+    {
+        $this->category = $category;
 
         return $this;
     }
