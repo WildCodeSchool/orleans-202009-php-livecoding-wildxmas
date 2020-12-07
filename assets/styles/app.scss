@@ -1,4 +1,28 @@
-@import url('https://fonts.googleapis.com/css2?family=Nerko+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@400;700&family=Roboto:wght@100;300;500&display=swap');
 @import 'variables.scss';
 @import "~bootstrap/scss/bootstrap";
 @import 'navbar.scss';
+
+h1, h2 {
+    font-family: $title-font;
+}
+
+.card {
+    --card-height:400px;
+    --card-text-height:80px;
+    height: var(--card-height);
+
+    &:hover  {
+        box-shadow: 1px 1px 1px $shadow;
+    }
+    .card-img-top {
+        height: calc(var(--card-height) - var(--card-text-height));
+        object-fit: cover;
+        object-position: top;
+    }
+    .card-title {
+        height: var(--card-text-height);
+        font-family: $title-font;
+        margin-bottom: $spacing;
+    }
+}

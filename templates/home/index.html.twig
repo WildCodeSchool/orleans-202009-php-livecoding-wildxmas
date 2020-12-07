@@ -1,7 +1,14 @@
 {% extends 'layout.html.twig' %}
 
 {% block title %}Home{% endblock %}
+{% block stylesheets %}
+    {{ encore_entry_link_tags('home') }}
+{% endblock %}
 
 {% block body %}
-    <h1>Welcome on your project 3</h1>
+    <header class="d-flex flex-column justify-content-center align-items-center">
+        <h1 class="title text-secondary">Wild Xmas</h1>
+        <h2>Help Santa to organise Christmas</h2>
+        <a href="#" class="btn bg-primary btn-lg text-light mt-5">Create your list</a>
+    </header>
 {% endblock %}

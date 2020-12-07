@@ -1,0 +1,11 @@
+@import 'variables.scss';
+
+header {
+    --header-width: 700px;
+    height: var(--header-width);
+    background-image: url('../images/header_background.webp');
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: top;
+}
+

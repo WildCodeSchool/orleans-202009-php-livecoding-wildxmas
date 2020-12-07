@@ -12,18 +12,18 @@ Encore
     // public path used by the web server to access the output path
     .setPublicPath('/build')
     // only needed for CDN's or sub-directory deploy
-    //.setManifestKeyPrefix('build/')
+    // .setManifestKeyPrefix('build/')
     .copyFiles({
         from: './assets/images',
 
         // optional target path, relative to the output dir
-        //to: 'images/[path][name].[ext]',
+        // to: 'images/[path][name].[ext]',
 
         // if versioning is enabled, add the file hash too
         to: 'images/[path][name].[hash:8].[ext]',
 
         // only copy files matching this pattern
-        //pattern: /\.(png|jpg|jpeg)$/
+        // pattern: /\.(png|jpg|jpeg)$/
     })
     /*
      * ENTRY CONFIG
@@ -35,6 +35,7 @@ Encore
      * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
      */
     .addEntry('app', './assets/js/app.js')
+    .addEntry('home', './assets/styles/home.scss')
 
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()
@@ -70,14 +71,14 @@ Encore
 
 // uncomment to get integrity="..." attributes on your script & link tags
 // requires WebpackEncoreBundle 1.4 or higher
-//.enableIntegrityHashes(Encore.isProduction())
+// .enableIntegrityHashes(Encore.isProduction())
 
 // uncomment if you're having problems with a jQuery plugin
-//.autoProvidejQuery()
+// .autoProvidejQuery()
 
 // uncomment if you use API Platform Admin (composer req api-admin)
-//.enableReactPreset()
-//.addEntry('admin', './assets/admin.js')
+// .enableReactPreset()
+// .addEntry('admin', './assets/admin.js')
 ;
 
 module.exports = Encore.getWebpackConfig();
