@@ -1,0 +1,32 @@
+{% extends 'adminLayout.html.twig' %}
+
+{% block title %}Index Gift{% endblock %}
+
+{% block body %}
+    <main class="container-fluid">
+        <h1>Gifts</h1>
+        <table class="table table-hover gift-list">
+            <thead class="bg-secondary text-light">
+                <tr>
+                    <th>Image</th>
+                    <th>Name</th>
+                    <th>Category</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for gift in gifts %}
+                    <tr>
+                        <td><img class="thumbnail" src="{{ gift.url }}" alt="Thumbnail of {{ gift.name }}"></td>
+                        <td>{{ gift.name|title }}</td>
+                        <td>{{ gift.category.name ?? '' }}</td>
+                        <td><a class="btn btn-secondary" href="{{ path('admin_gift_edit', {'id': gift.id}) }}">Edit</a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <a class="btn btn-primary" href="{{ path('admin_gift_new') }}">Add a new gift</a>
+
+    </main>
+{% endblock %}

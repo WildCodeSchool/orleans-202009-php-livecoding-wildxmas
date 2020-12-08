@@ -1,12 +1,13 @@
 {% extends 'base.html.twig' %}
 {% form_theme form 'bootstrap_4_layout.html.twig' %}
 
-{% block title %}Add gift{% endblock %}
+{% block title %}Edit Gift{% endblock %}
 
 {% block body %}
     <main class="container-fluid">
-        <h1>Add a gift</h1>
-        {% include 'admin_gift/_form.html.twig' with {'label_button': 'Add'} %}
+        <h1>Edit gift {{ gift.name }}</h1>
+        {% include 'admin_gift/_form.html.twig' with {'label_button': 'Edit'} %}
         <a class="btn btn-outline-primary mt-5" href="{{ path('admin_gift_index') }}">Back</a>
+
     </main>
 {% endblock %}
