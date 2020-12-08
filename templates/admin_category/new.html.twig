@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+
+{% block title %}Nouvelle Catégorie{% endblock %}
+
+{% block body %}
+    <main class="container-fluid">
+        <h1>Créer une nouvelle catégorie</h1>
+
+        {{ include('admin_category/_form.html.twig') }}
+
+        <a class="btn btn-outline-primary mt-5" href="{{ path('category_index') }}">Retour</a>
+    </main>
+{% endblock %}
