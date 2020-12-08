@@ -66,4 +66,15 @@ class AdminGiftController extends AbstractController
             'gift' => $gift,
         ]);
     }
+
+    /**
+     * @Route("/delete/{id}", name="delete", methods={"POST"})
+     */
+    public function delete(Gift $gift, EntityManagerInterface $entityManager): Response
+    {
+        $entityManager->remove($gift);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('admin_gift_index');
+    }
 }
