@@ -36,6 +36,19 @@ class UserFixtures extends Fixture
         $user->setBirthdate($faker->dateTimeThisCentury);
         $manager->persist($user);
 
+        $elve = new User();
+        $elve->setEmail('elve@wildxmas.com');
+        $elve->setPassword($this->passwordEncoder->encodePassword($user, 'elve'));
+        $elve->setBirthdate($faker->dateTimeThisCentury);
+        $elve->setRoles(['ROLE_ELVE']);
+        $manager->persist($elve);
+
+        $santa = new User();
+        $santa->setEmail('santa@wildxmas.com');
+        $santa->setPassword($this->passwordEncoder->encodePassword($user, 'santa'));
+        $santa->setBirthdate($faker->dateTimeThisCentury);
+        $santa->setRoles(['ROLE_SANTA']);
+        $manager->persist($santa);
 
         $manager->flush();
     }
