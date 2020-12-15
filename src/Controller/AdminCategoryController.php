@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @Route("/admin/category")
- * @IsGranted('ROLE_SANTA')
+ * @IsGranted("ROLE_SANTA")
  */
 class AdminCategoryController extends AbstractController
 {
