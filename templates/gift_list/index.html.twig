@@ -3,35 +3,35 @@
 {% block title %}GiftList index{% endblock %}
 
 {% block body %}
-    <h1>GiftList index</h1>
+    <main class="container-fluid">
+        <h1 class="mt-5">GiftList index</h1>
 
-    <table class="table">
-        <thead>
+        <table class="table">
+            <thead>
             <tr>
                 <th>Id</th>
                 <th>Year</th>
                 <th>Number</th>
                 <th>actions</th>
             </tr>
-        </thead>
-        <tbody>
-        {% for gift_list in gift_lists %}
-            <tr>
-                <td>{{ gift_list.id }}</td>
-                <td>{{ gift_list.year }}</td>
-                <td>{{ gift_list.gifts|length }}</td>
-                <td>
-                    <a href="{{ path('gift_list_show', {'id': gift_list.id}) }}">show</a>
-                    <a href="{{ path('gift_list_edit', {'id': gift_list.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="3">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('gift_list_new') }}">Create new</a>
+            </thead>
+            <tbody>
+            {% for gift_list in gift_lists %}
+                <tr>
+                    <td>{{ gift_list.id }}</td>
+                    <td>{{ gift_list.year }}</td>
+                    <td>{{ gift_list.gifts|length }}</td>
+                    <td>
+                        <a href="{{ path('gift_list_show', {'id': gift_list.id}) }}">show</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="3">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <a class="btn btn-primary" href="{{ path('gift_list_new') }}">Create new</a>
+    </main>
 {% endblock %}
