@@ -4,8 +4,10 @@ namespace App\Controller;
 
 use App\Entity\Gift;
 use App\Entity\GiftList;
+use App\Entity\User;
 use App\Form\GiftListType;
 use App\Repository\GiftListRepository;
+use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -36,13 +38,14 @@ class GiftListController extends AbstractController
         Gift $gift,
         GiftListRepository $giftListRepository,
         EntityManagerInterface $entityManager
-    )
-    {
-        $currentYear = (new \DateTime())->format('Y');
+    ): Response {
+        $currentYear = (int)(new DateTime())->format('Y');
         $currentList = $giftListRepository->findOneBy(['year' => $currentYear, 'user' => $this->getUser()]);
         if ($currentList === null) {
             $currentList = new GiftList();
-            $currentList->setUser($this->getUser())->setYear($currentYear);
+            /** @var User $user */
+            $user = $this->getUser();
+            $currentList->setUser($user)->setYear($currentYear);
             $entityManager->persist($currentList);
         }
         if ($currentList->getGifts()->contains($gift)) {
@@ -60,11 +63,12 @@ class GiftListController extends AbstractController
     /**
      * @Route("/remove-list/{giftList}/{gift}", name="gift_remove_list", methods={"POST"})
      */
-    public function removeList(GiftList $giftList, Gift $gift, EntityManagerInterface $entityManager)
+    public function removeList(GiftList $giftList, Gift $gift, EntityManagerInterface $entityManager): Response
     {
         $giftList->removeGift($gift);
         $entityManager->flush();
         $this->addFlash('success', 'Gift removed from list');
+
         return $this->redirectToRoute('gift_list_show', ['id' => $giftList->getId()]);
     }
 
@@ -74,7 +78,9 @@ class GiftListController extends AbstractController
     public function new(Request $request): Response
     {
         $giftList = new GiftList();
-        $giftList->setUser($this->getUser());
+        /** @var User $user */
+        $user = $this->getUser();
+        $giftList->setUser($user);
         $form = $this->createForm(GiftListType::class, $giftList);
         $form->handleRequest($request);
 

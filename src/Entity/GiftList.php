@@ -21,22 +21,22 @@ class GiftList
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    private $id;
+    private int $id;
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="giftLists")
      */
-    private $user;
+    private ?User $user;
 
     /**
      * @ORM\Column(type="integer")
      */
-    private $year;
+    private int $year;
 
     /**
      * @ORM\ManyToMany(targetEntity=Gift::class)
      */
-    private $gifts;
+    private Collection $gifts;
 
     public function __construct()
     {

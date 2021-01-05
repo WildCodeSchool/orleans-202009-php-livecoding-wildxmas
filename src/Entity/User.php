@@ -44,12 +44,12 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="boolean")
      */
-    private $isVerified = false;
+    private bool $isVerified = false;
 
     /**
      * @ORM\OneToMany(targetEntity=GiftList::class, mappedBy="user")
      */
-    private $giftLists;
+    private Collection $giftLists;
 
     public function __construct()
     {
