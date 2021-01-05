@@ -11,7 +11,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 /**
  * @ORM\Entity(repositoryClass=GiftListRepository::class)
  * @UniqueEntity(
- *     fields={"user", "year"}
+ *     fields={"year", "user"}
  * )
  */
 class GiftList

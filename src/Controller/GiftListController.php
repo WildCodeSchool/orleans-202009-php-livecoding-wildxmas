@@ -36,15 +36,16 @@ class GiftListController extends AbstractController
         Gift $gift,
         GiftListRepository $giftListRepository,
         EntityManagerInterface $entityManager
-    ) {
+    )
+    {
         $currentYear = (new \DateTime())->format('Y');
-        $currentList = $giftListRepository->findOneBy(['year' => $currentYear, 'user'=> $this->getUser()]);
-        if($currentList === null) {
+        $currentList = $giftListRepository->findOneBy(['year' => $currentYear, 'user' => $this->getUser()]);
+        if ($currentList === null) {
             $currentList = new GiftList();
             $currentList->setUser($this->getUser())->setYear($currentYear);
             $entityManager->persist($currentList);
         }
-        if($currentList->getGifts()->contains($gift)) {
+        if ($currentList->getGifts()->contains($gift)) {
             $this->addFlash('danger', 'Already in this list');
         } else {
             $currentList->addGift($gift);
@@ -57,17 +58,28 @@ class GiftListController extends AbstractController
     }
 
     /**
+     * @Route("/remove-list/{giftList}/{gift}", name="gift_remove_list", methods={"POST"})
+     */
+    public function removeList(GiftList $giftList, Gift $gift, EntityManagerInterface $entityManager)
+    {
+        $giftList->removeGift($gift);
+        $entityManager->flush();
+        $this->addFlash('success', 'Gift removed from list');
+        return $this->redirectToRoute('gift_list_show', ['id' => $giftList->getId()]);
+    }
+
+    /**
      * @Route("/new", name="gift_list_new", methods={"GET","POST"})
      */
     public function new(Request $request): Response
     {
         $giftList = new GiftList();
+        $giftList->setUser($this->getUser());
         $form = $this->createForm(GiftListType::class, $giftList);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
-            $giftList->setUser($this->getUser());
             $entityManager->persist($giftList);
             $entityManager->flush();
 
@@ -76,7 +88,7 @@ class GiftListController extends AbstractController
 
         return $this->render('gift_list/new.html.twig', [
             'gift_list' => $giftList,
-            'form' => $form->createView(),
+            'form'      => $form->createView(),
         ]);
     }
 
@@ -106,7 +118,7 @@ class GiftListController extends AbstractController
 
         return $this->render('gift_list/edit.html.twig', [
             'gift_list' => $giftList,
-            'form' => $form->createView(),
+            'form'      => $form->createView(),
         ]);
     }
 
@@ -115,7 +127,7 @@ class GiftListController extends AbstractController
      */
     public function delete(Request $request, GiftList $giftList): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$giftList->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $giftList->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($giftList);
             $entityManager->flush();

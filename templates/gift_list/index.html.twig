@@ -10,7 +10,7 @@
             <tr>
                 <th>Id</th>
                 <th>Year</th>
-                <th>User</th>
+                <th>Number</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -19,7 +19,7 @@
             <tr>
                 <td>{{ gift_list.id }}</td>
                 <td>{{ gift_list.year }}</td>
-                <td>{{ gift_list.user.email ?? '' }}</td>
+                <td>{{ gift_list.gifts|length }}</td>
                 <td>
                     <a href="{{ path('gift_list_show', {'id': gift_list.id}) }}">show</a>
                     <a href="{{ path('gift_list_edit', {'id': gift_list.id}) }}">edit</a>
