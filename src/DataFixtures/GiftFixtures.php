@@ -18,7 +18,7 @@ class GiftFixtures extends Fixture implements DependentFixtureInterface
         for ($i = 0; $i < 50; $i++) {
             $gift = new Gift();
             $gift->setName($faker->word);
-            $gift->setUrl($faker->imageUrl(150, 150));
+            $gift->setUrl('https://via.placeholder.com/300');
             $gift->setDescription($faker->text);
 
             $gift->setCategory($this->getReference('category_' . rand(0, 9)));
