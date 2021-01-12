@@ -21,8 +21,8 @@ class GiftFixtures extends Fixture implements DependentFixtureInterface
 
             // recup l'image, la copier dans uploads/gifts et stocker son nom en bdd
             $image = 'https://loremflickr.com/320/240/gift';
-            $path = uniqid().'.jpg';
-            copy($image, __DIR__.'/../../public/uploads/gifts/'.$path);
+            $path = uniqid() . '.jpg';
+            copy($image, __DIR__ . '/../../public/uploads/gifts/' . $path);
             $gift->setPath($path);
             $gift->setDescription($faker->text);
 
