@@ -16,7 +16,7 @@
             {% for gift in gifts %}
                 <div class="col-sm-6 col-md-4 col-lg-3 mt-3">
                     <div class="card">
-                        <img src="{{ gift.url }}" class="card-img-top" alt="image of {{ gift.name }}">
+                        <img src="{{ vich_uploader_asset(gift, 'imageFile') }}" class="card-img-top" alt="image of {{ gift.name }}">
                         <div class="card-body">
                             <div>
                                 <form method="post" action="{{ path('gift_add_list', {'id': gift.id}) }}">

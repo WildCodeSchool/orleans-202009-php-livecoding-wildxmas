@@ -11,6 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class GiftType extends AbstractType
 {
@@ -25,7 +26,9 @@ class GiftType extends AbstractType
                 'help'  => 'Saisir un nom de cadeau',
             ])
             ->add('description', TextareaType::class)
-            ->add('url', UrlType::class)
+            ->add('imageFile', VichImageType::class, [
+                'required' => false,
+            ])
             ->add('category', EntityType::class, [
                 'class'        => Category::class,
                 'choice_label' => 'name',

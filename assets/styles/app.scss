@@ -8,12 +8,12 @@ h1, h2 {
 }
 
 .card {
-    --card-height:400px;
-    --card-text-height:80px;
+    --card-height: 400px;
+    --card-text-height: 80px;
     height: var(--card-height);
     position: relative;
 
-    &:hover  {
+    &:hover {
         box-shadow: 1px 1px 1px $shadow;
     }
 
@@ -31,10 +31,19 @@ h1, h2 {
         font-family: $title-font;
         margin-bottom: $spacing;
     }
+
     .category {
         position: absolute;
         top: $spacing;
         left: $spacing;
         font-size: 12pt;
+    }
+}
+
+.vich-image {
+    a {
+        img {
+            height: 100px;
+        }
     }
 }

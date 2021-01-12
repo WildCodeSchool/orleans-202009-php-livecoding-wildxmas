@@ -17,7 +17,9 @@
             <tbody>
                 {% for gift in gifts %}
                     <tr>
-                        <td><img class="thumbnail" src="{{ gift.url }}" alt="Thumbnail of {{ gift.name }}"></td>
+                        <td>
+                            <img class="thumbnail" src="{{ vich_uploader_asset(gift, 'imageFile') }}" alt="Thumbnail of {{ gift.name }}">
+                        </td>
                         <td>{{ gift.name|title }}</td>
                         <td>{{ gift.category.name ?? '' }}</td>
                         <td>

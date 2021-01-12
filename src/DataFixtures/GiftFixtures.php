@@ -15,10 +15,15 @@ class GiftFixtures extends Fixture implements DependentFixtureInterface
     {
         $faker = Factory::create();
 
-        for ($i = 0; $i < 50; $i++) {
+        for ($i = 0; $i < 25; $i++) {
             $gift = new Gift();
             $gift->setName($faker->word);
-            $gift->setUrl('https://via.placeholder.com/300');
+
+            // recup l'image, la copier dans uploads/gifts et stocker son nom en bdd
+            $image = 'https://loremflickr.com/320/240/gift';
+            $path = uniqid().'.jpg';
+            copy($image, __DIR__.'/../../public/uploads/gifts/'.$path);
+            $gift->setPath($path);
             $gift->setDescription($faker->text);
 
             $gift->setCategory($this->getReference('category_' . rand(0, 9)));
