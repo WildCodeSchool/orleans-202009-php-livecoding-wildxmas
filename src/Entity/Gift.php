@@ -62,6 +62,11 @@ class Gift
      */
     private ?Category $category;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $metaphone;
+
     public function __construct()
     {
         $this->updatedAt = new DateTimeImmutable();
@@ -142,5 +147,17 @@ class Gift
     public function getImageFile(): ?File
     {
         return $this->imageFile;
+    }
+
+    public function getMetaphone(): ?string
+    {
+        return $this->metaphone;
+    }
+
+    public function setMetaphone(string $metaphone): self
+    {
+        $this->metaphone = $metaphone;
+
+        return $this;
     }
 }

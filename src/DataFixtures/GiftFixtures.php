@@ -17,7 +17,9 @@ class GiftFixtures extends Fixture implements DependentFixtureInterface
 
         for ($i = 0; $i < 25; $i++) {
             $gift = new Gift();
-            $gift->setName($faker->word);
+            $name = $faker->word;
+            $gift->setName($name);
+            $gift->setMetaphone(metaphone($name));
 
             // recup l'image, la copier dans uploads/gifts et stocker son nom en bdd
             $image = 'https://loremflickr.com/320/240/gift';

@@ -5,7 +5,8 @@
     </button>
     <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
         <div class="navbar-nav ">
-            <a class="nav-link" href="{{ path('gift_index')}}">Gifts</a>
+            <a class="nav-link" href="{{ path('gift_index', {'name': 'enfant'})}}">Gifts Children</a>
+            <a class="nav-link" href="{{ path('gift_index', {'name': 'adulte'})}}">Gifts Adults</a>
             <a class="nav-link" href="{{ path('gift_list_index') }}">My lists</a>
             <a class="nav-link" href="#">Profile</a>
         </div>

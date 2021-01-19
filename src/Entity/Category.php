@@ -32,6 +32,11 @@ class Category
      */
     private Collection $gifts;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Universe::class, inversedBy="categories")
+     */
+    private $universe;
+
     public function __construct()
     {
         $this->gifts = new ArrayCollection();
@@ -80,6 +85,18 @@ class Category
                 $gift->setCategory(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getUniverse(): ?Universe
+    {
+        return $this->universe;
+    }
+
+    public function setUniverse(?Universe $universe): self
+    {
+        $this->universe = $universe;
 
         return $this;
     }

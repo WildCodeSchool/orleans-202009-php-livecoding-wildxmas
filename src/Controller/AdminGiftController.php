@@ -36,6 +36,7 @@ class AdminGiftController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $gift->setMetaphone(metaphone($gift->getName()));
             $entityManager->persist($gift);
             $entityManager->flush();
 
@@ -56,6 +57,7 @@ class AdminGiftController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $gift->setMetaphone(metaphone($gift->getName()));
             $entityManager->flush();
 
             return $this->redirectToRoute('admin_gift_index');
