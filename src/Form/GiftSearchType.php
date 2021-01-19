@@ -13,7 +13,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class GiftSearchType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->setMethod('GET')
@@ -21,29 +21,28 @@ class GiftSearchType extends AbstractType
                 'required' => false,
             ])
             ->add('category', EntityType::class, [
-                'class' => Category::class,
-                'choice_label' => 'name',
-                'required' => false,
+                'class'         => Category::class,
+                'choice_label'  => 'name',
+                'required'      => false,
                 'query_builder' => function (EntityRepository $er) use ($options) {
                     return $er->createQueryBuilder('c')
                         ->where('c.universe = :universe')
-                            ->setParameter('universe', $options['universe'])
+                        ->setParameter('universe', $options['universe'])
                         ->orderBy('c.name', 'ASC');
                 },
-            ])
-        ;
+            ]);
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => GiftSearch::class,
+            'data_class'      => GiftSearch::class,
             'csrf_protection' => false,
-            'universe' => null,
+            'universe'        => null,
         ]);
     }
 
-    public function getBlockPrefix()
+    public function getBlockPrefix(): string
     {
         return '';
     }

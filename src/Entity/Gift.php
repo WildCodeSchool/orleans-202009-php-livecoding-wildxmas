@@ -65,7 +65,7 @@ class Gift
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $metaphone;
+    private string $metaphone = '';
 
     public function __construct()
     {
@@ -125,6 +125,11 @@ class Gift
         return $this;
     }
 
+    public function getImageFile(): ?File
+    {
+        return $this->imageFile;
+    }
+
     /**
      * If manually uploading a file (i.e. not using Symfony Form) ensure an instance
      * of 'UploadedFile' is injected into this setter to trigger the update. If this
@@ -142,11 +147,6 @@ class Gift
             // otherwise the event listeners won't be called and the file is lost
             $this->updatedAt = new DateTimeImmutable();
         }
-    }
-
-    public function getImageFile(): ?File
-    {
-        return $this->imageFile;
     }
 
     public function getMetaphone(): ?string

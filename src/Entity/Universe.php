@@ -17,17 +17,17 @@ class Universe
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    private $id;
+    private int $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $name;
+    private ?string $name = '';
 
     /**
      * @ORM\OneToMany(targetEntity=Category::class, mappedBy="universe")
      */
-    private $categories;
+    private Collection $categories;
 
     public function __construct()
     {

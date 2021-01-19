@@ -20,15 +20,15 @@ class GiftRepository extends ServiceEntityRepository
         parent::__construct($registry, Gift::class);
     }
 
-    public function findGift(GiftSearch $giftSearch)
+    public function findGift(GiftSearch $giftSearch): array
     {
         $queryBuilder = $this->createQueryBuilder('g');
         if ($giftSearch->getInput()) {
             $queryBuilder->
             andWhere('g.name LIKE :name')
                 ->setParameter('name', '%' . $giftSearch->getInput() . '%')
-            ->orWhere('g.metaphone = :metaphone')
-                ->setParameter('metaphone', metaphone($giftSearch->getInput()));
+                ->orWhere('g.metaphone = :metaphone')
+                ->setParameter('metaphone', metaphone($giftSearch->getInput() ?? ''));
         }
         if ($giftSearch->getCategory() !== null) {
             $queryBuilder->

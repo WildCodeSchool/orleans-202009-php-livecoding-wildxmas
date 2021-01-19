@@ -35,7 +35,7 @@ class Category
     /**
      * @ORM\ManyToOne(targetEntity=Universe::class, inversedBy="categories")
      */
-    private $universe;
+    private ?Universe $universe;
 
     public function __construct()
     {

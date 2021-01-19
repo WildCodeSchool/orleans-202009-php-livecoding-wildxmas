@@ -21,13 +21,13 @@ class GiftController extends AbstractController
         $giftSearch = new GiftSearch();
         $form = $this->createForm(GiftSearchType::class, $giftSearch, ['universe' => $universe]);
         $form->handleRequest($request);
-        if($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {
             $gifts = $giftRepository->findGift($giftSearch);
         }
 
         return $this->render('gift/index.html.twig', [
-           'gifts' => $gifts ?? $giftRepository->findAll(),
-            'form' => $form->createView(),
+            'gifts' => $gifts ?? $giftRepository->findAll(),
+            'form'  => $form->createView(),
         ]);
     }
 }
