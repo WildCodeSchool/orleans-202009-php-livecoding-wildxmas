@@ -11,10 +11,10 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      if: '${{ secrets.CAPROVER_PRODUCTION_SERVER }}'
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
+      if: secrets.CAPROVER_PRODUCTION_SERVER
       - uses: AlexxNB/caprover-action@v1
         with:
           server: '${{ secrets.CAPROVER_PRODUCTION_SERVER }}'
