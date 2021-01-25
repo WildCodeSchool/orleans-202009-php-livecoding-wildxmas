@@ -15,6 +15,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - uses: AlexxNB/caprover-action@v1
+        if: secrets.CAPROVER_PRODUCTION_SERVER != ''
         with:
           server: '${{ secrets.CAPROVER_PRODUCTION_SERVER }}'
           password: '${{ secrets.CAPROVER_PRODUCTION_PASSWORD }}'
