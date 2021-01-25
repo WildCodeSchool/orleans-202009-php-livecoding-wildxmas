@@ -1,5 +1,4 @@
 name: deploy_prod
-if: '${{ secrets.CAPROVER_PRODUCTION_SERVER }}'
 on:
   push:
     branches: [ master ]
@@ -12,6 +11,7 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+      if: '${{ secrets.CAPROVER_PRODUCTION_SERVER }}'
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
