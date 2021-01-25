@@ -15,7 +15,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - uses: AlexxNB/caprover-action@v1
-        if: steps.1.outputs.HAS_SECRET
+        if: steps.vars.outputs.HAS_SECRET
         with:
           server: '${{ secrets.CAPROVER_PRODUCTION_SERVER }}'
           password: '${{ secrets.CAPROVER_PRODUCTION_PASSWORD }}'
