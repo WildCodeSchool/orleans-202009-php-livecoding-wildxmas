@@ -26,7 +26,7 @@ class UserFixtures extends Fixture
             $user->setEmail($faker->email);
             $user->setPassword($this->passwordEncoder->encodePassword($user, 'azerty'));
             $user->setBirthdate($faker->dateTimeThisCentury);
-            $this->setReference('user_'.$i, $user);
+            $this->setReference('user_' . $i, $user);
             $manager->persist($user);
         }
 

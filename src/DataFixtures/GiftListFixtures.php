@@ -19,10 +19,10 @@ class GiftListFixtures extends Fixture implements DependentFixtureInterface
         for ($i = 0; $i < 25; $i++) {
             $list = new GiftList();
             $list->setYear($faker->year);
-            $list->setUser($this->getReference('user_'.rand(0,9)));
-            $list->addGift($this->getReference('gift_'.rand(0,24)));
-            $list->addGift($this->getReference('gift_'.rand(0,24)));
-            $list->addGift($this->getReference('gift_'.rand(0,24)));
+            $list->setUser($this->getReference('user_' . rand(0, 9)));
+            $list->addGift($this->getReference('gift_' . rand(0, 24)));
+            $list->addGift($this->getReference('gift_' . rand(0, 24)));
+            $list->addGift($this->getReference('gift_' . rand(0, 24)));
             $manager->persist($list);
         }
 
