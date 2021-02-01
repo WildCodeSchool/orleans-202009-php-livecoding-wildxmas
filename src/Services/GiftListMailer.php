@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Entity\Gift;
 use App\Entity\GiftList;
+use App\Entity\User;
 use App\Repository\GiftListRepository;
 use Dompdf\Dompdf;
 use Dompdf\Options;
@@ -60,7 +61,7 @@ class GiftListMailer
         /** @var string $output */
         $output = $dompdf->output();
 
-        /** var User $user */
+        /** @var User $user */
         $user = $giftList->getUser();
 
         $email = (new Email())

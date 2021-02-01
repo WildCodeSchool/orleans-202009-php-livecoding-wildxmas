@@ -16,20 +16,16 @@ class WildxmasListCommand extends Command
 
     private GiftListMailer $giftListMailer;
 
-    public function __construct( GiftListMailer $giftListMailer)
+    public function __construct(GiftListMailer $giftListMailer)
     {
         $this->giftListMailer = $giftListMailer;
         parent::__construct();
     }
 
-
     protected function configure(): void
     {
         $this
-            ->setDescription('Send mail with list')
-//            ->addArgument('arg1', InputArgument::OPTIONAL, 'Argument description')
-//            ->addOption('option1', null, InputOption::VALUE_NONE, 'Option description')
-        ;
+            ->setDescription('Send mail with list');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
