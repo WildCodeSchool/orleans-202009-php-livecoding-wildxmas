@@ -29,7 +29,7 @@ class GiftFixtures extends Fixture implements DependentFixtureInterface
             $gift->setDescription($faker->text);
 
             $gift->setCategory($this->getReference('category_' . rand(0, 9)));
-
+            $this->addReference('gift_'.$i, $gift);
             $manager->persist($gift);
         }
 

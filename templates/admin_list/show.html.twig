@@ -1,0 +1,14 @@
+{% extends 'adminLayout.html.twig' %}
+
+{% block title %}Lists{% endblock %}
+
+{% block body %}
+    <h1>Lists of {{ list.user.email }} - {{ list.year }}</h1>
+    <div class="row">
+        {% for gift in list.gifts %}
+            <div class="card col-3">
+                <h2>{{ gift.name }}</h2>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

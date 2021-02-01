@@ -1,0 +1,29 @@
+{% extends 'adminLayout.html.twig' %}
+
+{% block title %}Lists{% endblock %}
+
+{% block body %}
+    <h1>Lists</h1>
+    <main class="container">
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>User</th>
+            <th>Year</th>
+            <th>Gifts</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for list in lists %}
+            <tr>
+                <td>{{ list.user.email }}</td>
+                <td>{{ list.year }}</td>
+                <td>{{ list.gifts|length }}</td>
+                <td><a class="btn btn-primary" href="{{ path('admin_list_show', {'id': list.id}) }}">Show</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+        </table>
+    </main>
+{% endblock %}
