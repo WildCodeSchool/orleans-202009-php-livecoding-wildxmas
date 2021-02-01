@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\GiftList;
 use App\Repository\GiftListRepository;
+use App\Services\GiftListMailer;
 use Dompdf\Dompdf;
 use Dompdf\Options;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -37,39 +38,9 @@ class AdminListController extends AbstractController
     /**
      * @Route("/list/pdf/{id}", name="list_pdf")
      */
-    public function sendPDF(GiftList $giftList, MailerInterface $mailer): Response
+    public function sendPDF(GiftList $giftList, GiftListMailer $giftListMailer): Response
     {
-        // Configure Dompdf according to your needs
-        $pdfOptions = new Options();
-        $pdfOptions->set('defaultFont', 'Arial');
-
-        // Instantiate Dompdf with our options
-        $dompdf = new Dompdf($pdfOptions);
-
-        // Retrieve the HTML generated in our twig file
-        $html = $this->renderView('admin_list/pdf.html.twig', [
-            'list' => $giftList,
-        ]);
-
-        // Load HTML to Dompdf
-        $dompdf->loadHtml($html);
-
-        // Render the HTML as PDF
-        $dompdf->render();
-
-        // Store PDF Binary Data
-        /** @var string $output */
-        $output = $dompdf->output();
-
-        $email = (new Email())
-            ->from('hello@example.com')
-            ->to('you@example.com')
-            ->subject('List PDF')
-            ->text('Ma liste en PDF!')
-            ->attach($output);
-
-        $mailer->send($email);
-
+        $giftListMailer->send($giftList);
         $this->addFlash('success', 'La liste a été envoyée');
 
         return $this->redirectToRoute('admin_list');
