@@ -58,8 +58,8 @@ class AdminListController extends AbstractController
         $dompdf->render();
 
         // Store PDF Binary Data
+        /** @var string $output */
         $output = $dompdf->output();
-
 
         $email = (new Email())
             ->from('hello@example.com')
@@ -73,9 +73,5 @@ class AdminListController extends AbstractController
         $this->addFlash('success', 'La liste a été envoyée');
 
         return $this->redirectToRoute('admin_list');
-        // Output the generated PDF to Browser (force download)
-//        $dompdf->stream("list.pdf", [
-//            "Attachment" => true,
-//        ]);
     }
 }
