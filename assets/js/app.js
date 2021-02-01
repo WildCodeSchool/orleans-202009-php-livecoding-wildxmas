@@ -9,6 +9,7 @@
 import '../styles/app.scss';
 import '../styles/home.scss';
 import '../styles/admin.scss';
+
 import bsCustomFileInput from 'bs-custom-file-input';
 
 // Need jQuery? Install it with "yarn add jquery", then uncomment to import it.
